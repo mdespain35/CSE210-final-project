@@ -1,4 +1,4 @@
-from point import Point
+from game.point import Point
 
 class MovingObject():
     def __init__(self):
