@@ -1,12 +1,14 @@
-from abc import ABC, abstractmethod
+from point import Point
 
-class MovingObject(ABC):
+class MovingObject():
+    def __init__(self):
+        self.center = Point()
+        self.radius = 0
 
-    @abstractmethod
     def draw_self(self):
         pass
 
-    @abstractmethod
+
     def advance(self):
         pass
 
