@@ -14,6 +14,7 @@ class Director(arcade.Window):
         self.held_keys = set()
 
         # TODO: declare anything here you need the game class to track
+        
 
     def on_draw(self):
         """
@@ -25,6 +26,7 @@ class Director(arcade.Window):
         arcade.start_render()
 
         # TODO: Draw each object
+        
 
     def update(self, delta_time):
         """
@@ -34,7 +36,7 @@ class Director(arcade.Window):
         self.check_keys()
 
         # TODO: Tell everything to advance or move forward one step in time
-
+        
         # TODO: Check for collisions
 
     def check_keys(self):
@@ -59,12 +61,16 @@ class Director(arcade.Window):
         """
 
         # TODO: Implement ship class so this makes sense
+        self.held_keys.add(key)
+        """
         if self.ship.alive:
             self.held_keys.add(key)
 
             if key == arcade.key.SPACE:
                 # TODO: Fire the bullet here!
                 pass
+        """
+        
 
     def on_key_release(self, key: int, modifiers: int):
         """
@@ -96,3 +102,6 @@ Logic needed to actually start game:
     window = Director(800, 600)
     arcade.run()
 """
+
+window = Director(800, 600)
+arcade.run()
