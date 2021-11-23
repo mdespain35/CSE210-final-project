@@ -1,4 +1,5 @@
 import arcade
+import constants
 
 class Director(arcade.Window):
 
@@ -103,5 +104,5 @@ Logic needed to actually start game:
     arcade.run()
 """
 
-window = Director(800, 600)
+window = Director(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
 arcade.run()
