@@ -1,9 +1,9 @@
-from moving_object import MovingObject
+import arcade
 import constants
 
 # Our main character and protagonist, the ship!
 
-class Ship(MovingObject):
+class Ship(arcade.Sprite):
     def __init__(self):
         super().__init__()
         # TODO: Set starting point of the ship as the middle of the screen, set ship's radius

@@ -1,9 +1,9 @@
-from moving_object import MovingObject
+import arcade
 import constants
 
 # The space invaders themselves
 
-class Alien(MovingObject):
+class Alien(arcade.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # TODO: Set velocity equal to alien speed constant, set center values equal to x, y values passed

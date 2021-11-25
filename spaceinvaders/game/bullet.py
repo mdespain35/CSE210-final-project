@@ -1,9 +1,9 @@
-from moving_object import MovingObject
+import arcade
 import constants
 
 # The almighty bullet, destroyer of all, aliens, barriers, or ships. None survive the wrath of the bullet
 
-class Bullet(MovingObject):
+class Bullet(arcade.Sprite):
     def __init__(self, x, y, direction):
         super().__init__()
         # TODO: Set dy value of velocity equal to the bullet speed constant multiplied by direction
