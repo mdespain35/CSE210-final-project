@@ -1,5 +1,7 @@
+from ship import Ship
 import arcade
 import constants
+
 
 class Director(arcade.Window):
 
@@ -15,7 +17,7 @@ class Director(arcade.Window):
         self.held_keys = set()
 
         # TODO: declare anything here you need the game class to track
-        
+        self.ship = Ship()
 
     def on_draw(self):
         """
@@ -27,7 +29,7 @@ class Director(arcade.Window):
         arcade.start_render()
 
         # TODO: Draw each object
-        
+        self.ship.draw_self()
 
     def update(self, delta_time):
         """
@@ -37,7 +39,8 @@ class Director(arcade.Window):
         self.check_keys()
 
         # TODO: Tell everything to advance or move forward one step in time
-        
+        self.ship.advance()
+
         # TODO: Check for collisions
 
     def check_keys(self):
@@ -50,10 +53,10 @@ class Director(arcade.Window):
         # TODO: Implement what these keys do when pressed
 
         if arcade.key.LEFT in self.held_keys or arcade.key.A in self.held_keys:
-            pass
+            self.ship.move_left()
 
         if arcade.key.RIGHT in self.held_keys or arcade.key.D in self.held_keys:
-            pass
+            self.ship.move_right()
 
     def on_key_press(self, key: int, modifiers: int):
         """
@@ -71,7 +74,6 @@ class Director(arcade.Window):
                 # TODO: Fire the bullet here!
                 pass
         """
-        
 
     def on_key_release(self, key: int, modifiers: int):
         """
@@ -96,6 +98,7 @@ class Director(arcade.Window):
 
         # TODO: Implement clean up logic
         pass
+
 
 # TODO: Move this into the appropriate file to have it run once everything has been implemented.
 """
