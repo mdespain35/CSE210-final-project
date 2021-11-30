@@ -1,6 +1,6 @@
-from ship import Ship
+from game.ship import Ship
 import arcade
-import constants
+from game import constants
 
 
 class Director(arcade.Window):
@@ -14,10 +14,13 @@ class Director(arcade.Window):
         super().__init__(width, height)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
-        self.held_keys = set()
+        # self.held_keys = set()
+
+        self.all_sprites = arcade.SpriteList()
 
         # TODO: declare anything here you need the game class to track
         self.ship = Ship()
+        self.all_sprites.append(self.ship)
 
     def on_draw(self):
         """
@@ -29,21 +32,24 @@ class Director(arcade.Window):
         arcade.start_render()
 
         # TODO: Draw each object
-        self.ship.draw_self()
+        # Use Sprite Lists
+        self.all_sprites.draw()
 
     def update(self, delta_time):
         """
         Update each object in the game.
         :param delta_time: tells us how much time has actually elapsed
         """
-        self.check_keys()
-
+        # self.check_keys()
+        self.all_sprites.update()
         # TODO: Tell everything to advance or move forward one step in time
-        self.ship.advance()
+        # self.ship.advance()
+        # self.ship.setup()
 
         # TODO: Check for collisions
+        
 
-    def check_keys(self):
+    '''def check_keys(self):
         """
         This function checks for keys that are being held down.
         Performing various functions depending on the key pressed.
@@ -56,7 +62,7 @@ class Director(arcade.Window):
             self.ship.move_left()
 
         if arcade.key.RIGHT in self.held_keys or arcade.key.D in self.held_keys:
-            self.ship.move_right()
+            self.ship.move_right()'''
 
     def on_key_press(self, key: int, modifiers: int):
         """
@@ -65,7 +71,9 @@ class Director(arcade.Window):
         """
 
         # TODO: Implement ship class so this makes sense
-        self.held_keys.add(key)
+        self.ship.key_press(key)
+
+        # self.held_keys.add(key)
         """
         if self.ship.alive:
             self.held_keys.add(key)
@@ -79,8 +87,9 @@ class Director(arcade.Window):
         """
         Removes the current key from the set of held keys.
         """
-        if key in self.held_keys:
-            self.held_keys.remove(key)
+        self.ship.key_release(key)
+        # if key in self.held_keys:
+        # self.held_keys.remove(key)
 
     def check_collisions(self):
         """
@@ -106,6 +115,3 @@ Logic needed to actually start game:
     window = Director(800, 600)
     arcade.run()
 """
-
-window = Director(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
-arcade.run()
