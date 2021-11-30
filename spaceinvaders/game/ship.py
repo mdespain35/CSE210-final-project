@@ -1,5 +1,5 @@
 import arcade
-import constants
+from game import constants
 # from spaceinvaders.game.constants import SHIP_RADIUS
 
 # Our main character and protagonist, the ship!
@@ -7,41 +7,30 @@ import constants
 
 class Ship(arcade.Sprite):
     def __init__(self):
-        super().__init__()
+        filename = constants.SHIP_SPRITE
+        super().__init__(filename, constants.SCALING)
         # TODO: Set starting point of the ship as the middle of the screen, set ship's radius
-        # self.center_x = constants.SCREEN_WIDTH / 2
-        # self.center_y = constants.SCREEN_HEIGHT / 200
-        self.x = constants.SCREEN_WIDTH / 2
-        self.y = constants.SCREEN_HEIGHT / 20
-        self.thruster = constants.SHIP_THRUST
+        self.center_x = constants.SCREEN_WIDTH / 2
+        self.center_y = constants.SCREEN_HEIGHT / 30
 
-    def draw_self(self):
-        # TODO: Implement initial drawing of ship using arcade package
-        arcade.draw_rectangle_filled(
-            self.x, self.y, 60, 20, arcade.color.BLUE)
+    def key_press(self, key):
+        # When/if key is pressed, move sprite left or right
+        if key == arcade.key.LEFT or key == arcade.key.A:
+            self.change_x = constants.SHIP_THRUST * -1
+        elif key == arcade.key.RIGHT or key == arcade.key.D:
+            self.change_x = constants.SHIP_THRUST
 
-    def move_left(self):
-        # TODO: Move ship left by the constant value of SHIP_THRUST
-        self.thruster = -5
-        self.x += self.thruster
+    def key_release(self, key):
+        # Set the current position to stop when key is released
+        self.change_x = 0
 
-    def move_right(self):
-        # TODO: Move ship right by the constant value of SHIP_THRUST
-        self.thuster = 5
-        self.x -= self.thruster
-
-    def advance(self):
-
-        # self.x += self.thruster
-        self.thruster = 0
-
-    # def advance_left(self):
-    #     self.x += self.thruster
-    #     self.thruster = 0
-
-    # def advance_right(self):
-    #     self.x += self.thruster
-    #     self.thruster = 0
+    def update(self):
+        super().update()
+        # Check for boundaries so that the ship does not go outside of them
+        if self.left < 0:
+            self.left = 0
+        elif self.right > constants.SCREEN_WIDTH - 1:
+            self.right = constants.SCREEN_WIDTH - 1
 
     def fire_bullet(self):
         # TODO: Have the ship fire a bullet from its current position.
