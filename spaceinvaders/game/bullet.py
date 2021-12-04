@@ -9,7 +9,7 @@ class Bullet(arcade.Sprite):
         filepath = constants.BULLET_SPRITE
         super().__init__(filepath, constants.SCALING)
         # TODO: Set dy value of velocity equal to the bullet speed constant multiplied by direction
-        self.change_y = constants.BULLET_SPEED * direction
+        self.velocity = (0, constants.BULLET_SPEED * direction)
         # Set point values equal to the passed x and y respectively
         self.center_x = player.center_x
         self.center_y = player.center_y
