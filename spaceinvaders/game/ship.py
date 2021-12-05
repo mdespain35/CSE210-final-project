@@ -11,7 +11,7 @@ class Ship(arcade.Sprite):
         super().__init__(filename, constants.SCALING)
         # TODO: Set starting point of the ship as the middle of the screen, set ship's radius
         self.center_x = constants.SCREEN_WIDTH / 2
-        self.center_y = constants.SCREEN_HEIGHT / 30
+        self.center_y = constants.SCREEN_HEIGHT / 18
 
     def key_press(self, key):
         # When/if key is pressed, move sprite left or right
