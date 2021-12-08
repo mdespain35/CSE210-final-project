@@ -12,14 +12,13 @@ class Alien(arcade.Sprite):
         self.speed = constants.ALIEN_SPEED
         self.center_x = x
         self.center_y = y 
+        self.enemy_list = arcade.SpriteList()
 
-    def draw_self(self):
-        # TODO: Implement initial drawing of alien using arcade package
-        pass
+        self.enemy = arcade.Sprite(filename, constants.SCALING)
 
     def advance(self):
         # TODO: Advance aliens along screen, once they hit the edge of screen, move them down and reverse dx value from velocity
-        pass
+        
 
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
