@@ -1,4 +1,5 @@
 from game.ship import Ship
+from game.bullet import Bullet
 import arcade
 from game import constants
 
@@ -14,11 +15,16 @@ class Director(arcade.Window):
         super().__init__(width, height)
         arcade.set_background_color(arcade.color.SMOKY_BLACK)
 
+        # Loads sound
+        self.ship_bullet_sound = arcade.load_sound(constants.SHIP_SOUND)
+
         # self.held_keys = set()
 
+    def setup(self):
+        # Sets up the game and initializes the variables
         self.all_sprites = arcade.SpriteList()
+        self.bullet_sprite = arcade.SpriteList()
 
-        # TODO: declare anything here you need the game class to track
         self.ship = Ship()
         self.all_sprites.append(self.ship)
 
@@ -33,6 +39,7 @@ class Director(arcade.Window):
 
         # TODO: Draw each object
         # Use Sprite Lists
+        self.bullet_sprite.draw()
         self.all_sprites.draw()
 
     def update(self, delta_time):
@@ -42,14 +49,12 @@ class Director(arcade.Window):
         """
         # self.check_keys()
         self.all_sprites.update()
+        self.bullet_sprite.update()
         # TODO: Tell everything to advance or move forward one step in time
-        # self.ship.advance()
-        # self.ship.setup()
 
         # TODO: Check for collisions
-        
 
-    '''def check_keys(self):
+    def check_keys(self):
         """
         This function checks for keys that are being held down.
         Performing various functions depending on the key pressed.
@@ -57,12 +62,7 @@ class Director(arcade.Window):
         # Modified all keys so user can use AD or directional keys
 
         # TODO: Implement what these keys do when pressed
-
-        if arcade.key.LEFT in self.held_keys or arcade.key.A in self.held_keys:
-            self.ship.move_left()
-
-        if arcade.key.RIGHT in self.held_keys or arcade.key.D in self.held_keys:
-            self.ship.move_right()'''
+        pass
 
     def on_key_press(self, key: int, modifiers: int):
         """
@@ -72,6 +72,11 @@ class Director(arcade.Window):
 
         # TODO: Implement ship class so this makes sense
         self.ship.key_press(key)
+
+        if key == arcade.key.SPACE:
+            arcade.play_sound(self.ship_bullet_sound)
+            bullet = Bullet(self.ship)
+            self.bullet_sprite.append(bullet)
 
         # self.held_keys.add(key)
         """

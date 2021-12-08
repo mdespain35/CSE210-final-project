@@ -3,6 +3,6 @@ from game.director import Director
 import arcade
 
 director = Director(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
-# director.setup()
+director.setup()
 
 arcade.run()
