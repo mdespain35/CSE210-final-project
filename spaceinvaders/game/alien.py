@@ -15,6 +15,7 @@ class Alien(arcade.Sprite):
         self.enemy_list = arcade.SpriteList()
 
         self.enemy = arcade.Sprite(filename, constants.SCALING)
+        self.enemy_list.append(self.enemy)
         self.enemy.velocity = constants.ALIEN_SPEED
 
     def advance(self):
