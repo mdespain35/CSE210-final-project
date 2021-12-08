@@ -18,3 +18,4 @@ BARRIER_RADIUS = 5
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 SHIP_SPRITE = PATH + "/images/ship.png"
+ALIEN_SPRITE = PATH + "/images/space-invaders.png"

@@ -1,12 +1,17 @@
 import arcade
 import constants
-
+import random
 # The space invaders themselves
 
 class Alien(arcade.Sprite):
     def __init__(self, x, y):
-        super().__init__()
+        filename = constants.ALIEN_SPRITE
+        super().__init__(filename, constants.SCALING)
         # TODO: Set velocity equal to alien speed constant, set center values equal to x, y values passed
+        self.time_between_firing = random.randint(1, 3)
+        self.speed = constants.ALIEN_SPEED
+        self.center_x = x
+        self.center_y = y 
 
     def draw_self(self):
         # TODO: Implement initial drawing of alien using arcade package
