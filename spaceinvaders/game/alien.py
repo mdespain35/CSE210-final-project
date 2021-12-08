@@ -9,12 +9,13 @@ class Alien(arcade.Sprite):
         super().__init__(filename, constants.SCALING)
         # TODO: Set velocity equal to alien speed constant, set center values equal to x, y values passed
         self.time_between_firing = random.randint(1, 3)
-        self.speed = constants.ALIEN_SPEED
+
         self.center_x = x
         self.center_y = y 
         self.enemy_list = arcade.SpriteList()
 
         self.enemy = arcade.Sprite(filename, constants.SCALING)
+        self.enemy.velocity = constants.ALIEN_SPEED
 
     def advance(self):
         # TODO: Advance aliens along screen, once they hit the edge of screen, move them down and reverse dx value from velocity
