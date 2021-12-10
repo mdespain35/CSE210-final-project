@@ -12,7 +12,6 @@ class Alien(arcade.Sprite):
         self.change_x = constants.ALIEN_SPEED
         self.center_x = constants.SCREEN_WIDTH / 2
         self.center_y = constants.SCREEN_HEIGHT
-        self.bullet_fire = arcade.load_sound(constants.SHIP_SOUND)
 
     def advance(self):
         # TODO: Advance aliens along screen, once they hit the edge of screen, move them down and reverse dx value from velocity
