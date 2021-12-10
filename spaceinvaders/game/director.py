@@ -3,6 +3,7 @@ from game.bullet import Bullet
 from game.alien import Alien
 import arcade
 from game import constants
+import random
 
 
 class Director(arcade.Window):
@@ -55,6 +56,7 @@ class Director(arcade.Window):
         self.all_sprites.update()
         self.bullet_sprite.update()
         self.alien.advance()
+        self.fire_bullet()
         # TODO: Tell everything to advance or move forward one step in time
 
         # TODO: Check for collisions
@@ -118,6 +120,16 @@ class Director(arcade.Window):
         # TODO: Implement clean up logic
         pass
 
+    def fire_bullet(self):
+        # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
+        # Wait to implement this until bullets have been implemented. 
+        random_chance_of_firing = random.randint(1,100)
+
+        if random_chance_of_firing == 10:
+            arcade.play_sound(self.ship_bullet_sound)
+            bullet = Bullet(self.alien)
+            bullet.change_y = -1 * bullet.change_y
+            self.bullet_sprite.append(bullet)
 
 # TODO: Move this into the appropriate file to have it run once everything has been implemented.
 """
@@ -125,3 +137,4 @@ Logic needed to actually start game:
     window = Director(800, 600)
     arcade.run()
 """
+
