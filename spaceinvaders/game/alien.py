@@ -18,7 +18,7 @@ class Alien(arcade.Sprite):
         if self.left == 0 or self.right == constants.SCREEN_WIDTH:
 
             self.center_y = self.center_y - 10
-            self.reverse(self.change_x)
+            self.change_x = self.change_x * -1
 
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
