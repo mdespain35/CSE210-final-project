@@ -138,6 +138,7 @@ class Director(arcade.Window):
                 arcade.play_sound(self.ship_bullet_sound)
                 bullet = Bullet(alien)
                 bullet.change_y = -1 * bullet.change_y
+                bullet.angle = 180
                 self.bullet_sprite.append(bullet)
 
 # TODO: Move this into the appropriate file to have it run once everything has been implemented.
