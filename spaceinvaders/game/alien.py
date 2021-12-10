@@ -8,7 +8,7 @@ class Alien(arcade.Sprite):
         filename = constants.ALIEN_SPRITE
         super().__init__(filename, constants.SCALING)
         # TODO: Set velocity equal to alien speed constant, set center values equal to x, y values passed
-        self.time_between_firing = random.randint(1, 3)
+        self.chance_of_firing = random.randint(1, 3)
 
         self.center_x = x
         self.center_y = y 
