@@ -1,30 +1,24 @@
 import arcade
-import constants
+from game import constants
 import random
 # The space invaders themselves
 
 class Alien(arcade.Sprite):
-    def __init__(self, x, y):
+    def __init__(self):
         filename = constants.ALIEN_SPRITE
-        super().__init__(filename, constants.SCALING)
+        super().__init__(filename, constants.ALIEN_SCALING)
         # TODO: Set velocity equal to alien speed constant, set center values equal to x, y values passed
         self.chance_of_firing = random.randint(1, 3)
-
-        self.center_x = x
-        self.center_y = y 
-        self.enemy_list = arcade.SpriteList()
-
-        self.enemy = arcade.Sprite(filename, constants.SCALING)
-        self.enemy.velocity = (constants.ALIEN_SPEED, 0) 
+        self.change_x = constants.ALIEN_SPEED
+        self.center_x = constants.SCREEN_WIDTH / 2
+        self.center_y = constants.SCREEN_HEIGHT
 
     def advance(self):
         # TODO: Advance aliens along screen, once they hit the edge of screen, move them down and reverse dx value from velocity
-        for alien in self.enemy_list:
-            if alien.right == 0 or alien.left == 800:
-                for enemy in self.enemy_list:
+        if self.left == 0 or self.right == constants.SCREEN_WIDTH:
 
-                    enemy.center_y = enemy.center_y - 10
-                    enemy.reverse(self.enemy.change_x)
+            self.center_y = self.center_y - 10
+            self.change_x = self.change_x * -1
 
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds

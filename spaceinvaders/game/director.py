@@ -1,5 +1,6 @@
 from game.ship import Ship
 from game.bullet import Bullet
+from game.alien import Alien
 import arcade
 from game import constants
 
@@ -26,6 +27,9 @@ class Director(arcade.Window):
         self.bullet_sprite = arcade.SpriteList()
 
         self.ship = Ship()
+        self.alien = Alien()
+
+        self.all_sprites.append(self.alien)
         self.all_sprites.append(self.ship)
 
     def on_draw(self):
@@ -50,6 +54,7 @@ class Director(arcade.Window):
         # self.check_keys()
         self.all_sprites.update()
         self.bullet_sprite.update()
+        self.alien.advance()
         # TODO: Tell everything to advance or move forward one step in time
 
         # TODO: Check for collisions
