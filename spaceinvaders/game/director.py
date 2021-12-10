@@ -26,16 +26,23 @@ class Director(arcade.Window):
         # Sets up the game and initializes the variables
         self.all_sprites = arcade.SpriteList()
         self.bullet_sprite = arcade.SpriteList()
+        self.enemy_sprite = arcade.SpriteList()
+        #Variable for spawning the alien
+        alien_spawn_x = 100
 
         self.ship = Ship()
-        self.alien = Alien()
 
-        self.all_sprites.append(self.alien)
         self.all_sprites.append(self.ship)
+        
+        while alien_spawn_x <= 800:
+
+            self.alien = Alien(alien_spawn_x)
+            alien_spawn_x += 200
+            self.enemy_sprite.append(self.alien)
 
     def on_draw(self):
         """
-        Called automatically by the arcade framework.
+        Called automatically  by the arcade framework.
         Handles the responsibility of drawing all elements.
         """
 
@@ -46,6 +53,7 @@ class Director(arcade.Window):
         # Use Sprite Lists
         self.bullet_sprite.draw()
         self.all_sprites.draw()
+        self.enemy_sprite.draw()
 
     def update(self, delta_time):
         """
@@ -53,9 +61,9 @@ class Director(arcade.Window):
         :param delta_time: tells us how much time has actually elapsed
         """
         # self.check_keys()
+        self.enemy_sprite.update()
         self.all_sprites.update()
         self.bullet_sprite.update()
-        self.alien.advance()
         self.fire_bullet()
         # TODO: Tell everything to advance or move forward one step in time
 
@@ -123,13 +131,14 @@ class Director(arcade.Window):
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
         # Wait to implement this until bullets have been implemented. 
-        random_chance_of_firing = random.randint(1,100)
+        for alien in self.enemy_sprite:
+            random_chance_of_firing = random.randint(1,100)
 
-        if random_chance_of_firing == 10:
-            arcade.play_sound(self.ship_bullet_sound)
-            bullet = Bullet(self.alien)
-            bullet.change_y = -1 * bullet.change_y
-            self.bullet_sprite.append(bullet)
+            if random_chance_of_firing == 10:
+                arcade.play_sound(self.ship_bullet_sound)
+                bullet = Bullet(alien)
+                bullet.change_y = -1 * bullet.change_y
+                self.bullet_sprite.append(bullet)
 
 # TODO: Move this into the appropriate file to have it run once everything has been implemented.
 """
