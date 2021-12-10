@@ -19,12 +19,12 @@ class Alien(arcade.Sprite):
 
     def advance(self):
         # TODO: Advance aliens along screen, once they hit the edge of screen, move them down and reverse dx value from velocity
+        for alien in self.enemy_list:
+            if alien.right == 0 or alien.left == 800:
+                for enemy in self.enemy_list:
 
-        if self.enemy.right in self.enemy_list == 0:
-            for enemy in self.enemy_list:
-
-                enemy.change_y = enemy.change_y - 1
-                enemy.reverse(self.enemy.change_x)
+                    enemy.center_y = enemy.center_y - 10
+                    enemy.reverse(self.enemy.change_x)
 
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
