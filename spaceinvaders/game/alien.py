@@ -19,12 +19,3 @@ class Alien(arcade.Sprite):
 
             self.center_y = self.center_y - 10
             self.change_x = self.change_x * -1
-
-    # def fire_bullet(self,):
-    #     # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
-    #     # Wait to implement this until bullets have been implemented. 
-    #     random_chance_of_firing = random.randint(1,10)
-
-    #     if random_chance_of_firing == 10:
-    #         arcade.play_sound(self.bullet_fire)
-    #         self.bullet
