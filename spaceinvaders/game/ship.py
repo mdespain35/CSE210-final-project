@@ -1,6 +1,6 @@
 import arcade
 from game import constants
-# from spaceinvaders.game.constants import SHIP_RADIUS
+from game.bullet import Bullet
 
 # Our main character and protagonist, the ship!
 
@@ -8,10 +8,10 @@ from game import constants
 class Ship(arcade.Sprite):
     def __init__(self):
         filename = constants.SHIP_SPRITE
-        super().__init__(filename, constants.SCALING)
+        super().__init__(filename, constants.SHIP_SCALING)
         # TODO: Set starting point of the ship as the middle of the screen, set ship's radius
         self.center_x = constants.SCREEN_WIDTH / 2
-        self.center_y = constants.SCREEN_HEIGHT / 18
+        self.center_y = self.bottom + (self.height + 5)
 
     def key_press(self, key):
         # When/if key is pressed, move sprite left or right
@@ -31,8 +31,3 @@ class Ship(arcade.Sprite):
             self.left = 0
         elif self.right > constants.SCREEN_WIDTH - 1:
             self.right = constants.SCREEN_WIDTH - 1
-
-    def fire_bullet(self):
-        # TODO: Have the ship fire a bullet from its current position.
-        # Wait to implement this until bullets have been implemented.
-        pass
