@@ -15,7 +15,6 @@ class Alien(arcade.Sprite):
         self.enemy_list = arcade.SpriteList()
 
         self.enemy = arcade.Sprite(filename, constants.SCALING)
-        self.enemy_list.append(self.enemy)
         self.enemy.velocity = (constants.ALIEN_SPEED, 0) 
 
     def advance(self):
@@ -23,9 +22,9 @@ class Alien(arcade.Sprite):
 
         if self.enemy.right in self.enemy_list == 0:
             for enemy in self.enemy_list:
-                 self.enemy.reverse(self.enemy.velocity)
-                 
 
+                enemy.change_y = enemy.change_y - 1
+                enemy.reverse(self.enemy.change_x)
 
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
