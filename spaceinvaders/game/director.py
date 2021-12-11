@@ -26,6 +26,7 @@ class Director(arcade.Window):
         # Sets up the game and initializes the variables
         self.all_sprites = arcade.SpriteList()
         self.bullet_sprite = arcade.SpriteList()
+        self.alien_bullet_sprite = arcade.SpriteList()
         self.enemy_sprite = arcade.SpriteList()
         #Variable for spawning the alien
         alien_spawn_x = 100
@@ -68,6 +69,7 @@ class Director(arcade.Window):
         # TODO: Tell everything to advance or move forward one step in time
 
         # TODO: Check for collisions
+        self.check_collisions()
 
     def check_keys(self):
         """
@@ -113,20 +115,25 @@ class Director(arcade.Window):
 
     def check_collisions(self):
         """
-        Checks to see if bullets have hit asteroids and if asteroids have hit the ship.
+        Checks to see if alien bullets have hit the ship and if ship bullets have hit the aliens.
         Updates scores and removes dead items.
         :return:
         """
         # TODO: Implement collision logic
-        pass
+        # Checks if any of the alien bullets collide with the ship and remove the ship if so
+        for abullet in self.alien_bullet_sprite:
+            if(arcade.check_for_collision(self.all_sprites[0], abullet)):
+                self.all_sprites.clear()
 
-    def clean_up_zombies(self):
-        """
-        Loops through arrays and removes any objects that have died.
-        """
+        # Checks if the ships bullets hit any of the aliens
+        for bullet in self.bullet_sprite:
+            for alien in self.enemy_sprite:
+                if (arcade.check_for_collision(bullet, alien)):
+                    self.enemy_sprite.remove(alien)
+                    self.bullet_sprite.remove(bullet)
 
-        # TODO: Implement clean up logic
-        pass
+        
+
 
     def fire_bullet(self):
         # TODO: Have each alien have a small chance of firing a bullet every 3 seconds
@@ -139,7 +146,7 @@ class Director(arcade.Window):
                 bullet = Bullet(alien)
                 bullet.change_y = -1 * bullet.change_y
                 bullet.angle = 180
-                self.bullet_sprite.append(bullet)
+                self.alien_bullet_sprite.append(bullet)
 
 # TODO: Move this into the appropriate file to have it run once everything has been implemented.
 """
