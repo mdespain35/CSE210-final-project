@@ -53,6 +53,7 @@ class Director(arcade.Window):
         # TODO: Draw each object
         # Use Sprite Lists
         self.bullet_sprite.draw()
+        self.alien_bullet_sprite.draw()
         self.all_sprites.draw()
         self.enemy_sprite.draw()
 
