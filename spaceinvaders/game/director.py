@@ -67,6 +67,7 @@ class Director(arcade.Window):
         self.all_sprites.update()
         self.bullet_sprite.update()
         self.fire_bullet()
+        self.alien_bullet_sprite.update()
         # TODO: Tell everything to advance or move forward one step in time
 
         # TODO: Check for collisions
